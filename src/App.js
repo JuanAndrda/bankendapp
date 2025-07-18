@@ -1,11 +1,22 @@
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './UnAuth/LandingPage';
+import WelcomePage from './Auth/WelcomePage';
+import RequireAuth from './Auth/RequireAuth';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <LandingPage />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/welcome" element={
+          <RequireAuth>
+            <WelcomePage />
+          </RequireAuth>
+        } />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './LandingPage.css';
 import vrImage from '../assets/images/vr-headset.png'; // Placeholder path, update if needed
 import HomeSection from './sections/HomeSection';
@@ -6,6 +6,8 @@ import SpecsSection from './sections/SpecsSection';
 import FeaturesSection from './sections/FeaturesSection';
 import ReviewsSection from './sections/ReviewsSection';
 import PricingSection from './sections/PricingSection';
+import SignIn from '../Auth/SignIn';
+import SignUp from '../Auth/SignUp';
 
 const scrollToSection = (id) => {
   const el = document.getElementById(id);
@@ -15,6 +17,8 @@ const scrollToSection = (id) => {
 };
 
 const LandingPage = () => {
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
   return (
     <div className="landing-container">
       <nav className="navbar">
@@ -27,12 +31,16 @@ const LandingPage = () => {
           <li onClick={() => scrollToSection('pricing')}>Pricing</li>
         </ul>
         <button className="navbar-buy" onClick={() => scrollToSection('pricing')}>Buy Now</button>
+        <button onClick={() => setShowSignIn(true)} className="sign-in-btn">Sign In</button>
+        <button onClick={() => setShowSignUp(true)} className="sign-in-btn">Sign Up</button>
       </nav>
       <HomeSection />
       <SpecsSection />
       <FeaturesSection />
       <ReviewsSection />
       <PricingSection />
+      <SignIn open={showSignIn} onClose={() => setShowSignIn(false)} />
+      <SignUp open={showSignUp} onClose={() => setShowSignUp(false)} />
     </div>
   );
 };
