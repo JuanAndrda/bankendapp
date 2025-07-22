@@ -3,8 +3,10 @@ import app from '../firebase';
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
+import Modal from '../components/Modal';
+import './LogIn.css';
 
-const SignIn = ({ open, onClose }) => {
+function LogIn({ open, onClose }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -38,34 +40,35 @@ const SignIn = ({ open, onClose }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="close-btn" onClick={onClose}>&times;</button>
-        <h2>Sign In</h2>
-        <form onSubmit={handleEmailSignIn}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit">Sign In</button>
-        </form>
-        <button className="google-btn" onClick={handleGoogleSignIn}>
-          Sign in with Google
+    <Modal open={open} onClose={onClose}>
+      <div className="login-title">Log In</div>
+      <form className="login-form" onSubmit={handleEmailSignIn}>
+        <input
+          className="login-input"
+          type="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+        <input
+          className="login-input"
+          type="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+        />
+        <button className="login-btn" type="submit">
+          Sign In
         </button>
-        {error && <p className="error">{error}</p>}
-      </div>
-    </div>
+        {error && <div style={{ color: 'red' }}>{error}</div>}
+      </form>
+      <button className="google-btn" onClick={handleGoogleSignIn}>
+        Log in with Google
+      </button>
+    </Modal>
   );
-};
+}
 
-export default SignIn; 
+export default LogIn; 

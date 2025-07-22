@@ -6,7 +6,7 @@ import SpecsSection from './sections/SpecsSection';
 import FeaturesSection from './sections/FeaturesSection';
 import ReviewsSection from './sections/ReviewsSection';
 import PricingSection from './sections/PricingSection';
-import SignIn from '../Auth/SignIn';
+import LogIn from '../Auth/LogIn';
 import SignUp from '../Auth/SignUp';
 
 const scrollToSection = (id) => {
@@ -31,7 +31,7 @@ const LandingPage = () => {
           <li onClick={() => scrollToSection('pricing')}>Pricing</li>
         </ul>
         <button className="navbar-buy" onClick={() => scrollToSection('pricing')}>Buy Now</button>
-        <button onClick={() => setShowSignIn(true)} className="sign-in-btn">Sign In</button>
+        <button onClick={() => setShowSignIn(true)} className="sign-in-btn">Log in</button>
         <button onClick={() => setShowSignUp(true)} className="sign-in-btn">Sign Up</button>
       </nav>
       <HomeSection />
@@ -39,7 +39,7 @@ const LandingPage = () => {
       <FeaturesSection />
       <ReviewsSection />
       <PricingSection />
-      <SignIn open={showSignIn} onClose={() => setShowSignIn(false)} />
+      <LogIn open={showSignIn} onClose={() => setShowSignIn(false)} />
       <SignUp open={showSignUp} onClose={() => setShowSignUp(false)} />
     </div>
   );

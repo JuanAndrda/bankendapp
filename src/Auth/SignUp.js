@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import app from '../firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import '../App.css';
+import Modal from '../components/Modal';
+import './SignUp.css';
 
-const SignUp = ({ open, onClose }) => {
+function SignUp({ open, onClose }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -27,33 +29,30 @@ const SignUp = ({ open, onClose }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="close-btn" onClick={onClose}>&times;</button>
-        <h2>Sign Up</h2>
-        <form onSubmit={handleSignUp}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password (min 6 chars)"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-          />
-          <button type="submit">Sign Up</button>
-        </form>
-        {error && <p className="error">{error}</p>}
-        {success && <p style={{ color: '#22c55e', marginTop: '1rem' }}>{success}</p>}
-      </div>
-    </div>
+    <Modal open={open} onClose={onClose}>
+      <div className="signup-title">Sign Up</div>
+      <form className="signup-form" onSubmit={handleSignUp}>
+        <input
+          className="signup-input"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+        <input
+          className="signup-input"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+        />
+        <button className="signup-btn" type="submit">Sign Up</button>
+        {error && <div style={{ color: 'red' }}>{error}</div>}
+      </form>
+    </Modal>
   );
-};
+}
 
 export default SignUp; 
