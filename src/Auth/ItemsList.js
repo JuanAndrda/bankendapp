@@ -12,7 +12,7 @@ function ItemsList() {
 
   // Only query if user is logged in
   const itemsQuery = user
-    ? query(collection(db, "items"), where("owner", "==", user.uid))
+    ? query(collection(db, "items"))
     : null;
 
   const [snapshot, loading, error] = useCollection(itemsQuery);
@@ -48,40 +48,55 @@ function ItemsList() {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="items-list-container">
+    <div className="items-list-container improved-list">
       <h2>Your Items</h2>
       <ul className="items-list-ul">
-        {snapshot?.docs.map(docSnap => (
-          <li className="items-list-li" key={docSnap.id}>
-            {editingId === docSnap.id ? (
-              <>
-                <input
-                  className="items-list-edit-input"
-                  value={editValue}
-                  onChange={handleEditChange}
-                />
-                <button className="items-list-btn" onClick={() => handleEditSave(docSnap.id)}>
-                  Save
-                </button>
-                <button className="items-list-btn" onClick={handleEditCancel}>
-                  Cancel
-                </button>
-              </>
-            ) : (
-              <>
-                <span>{docSnap.data().name}</span>
-                <div>
-                  <button className="items-list-btn" onClick={() => handleEdit(docSnap.id, docSnap.data().name)}>
-                    Edit
+        {snapshot?.docs.map(docSnap => {
+          const data = docSnap.data();
+          return (
+            <li className="items-list-li improved-li" key={docSnap.id}>
+              {editingId === docSnap.id ? (
+                <>
+                  <input
+                    className="items-list-edit-input"
+                    value={editValue}
+                    onChange={handleEditChange}
+                  />
+                  <button className="items-list-btn improved-btn" onClick={() => handleEditSave(docSnap.id)}>
+                    Save
                   </button>
-                  <button className="items-list-btn" onClick={() => handleDelete(docSnap.id)}>
-                    Delete
+                  <button className="items-list-btn improved-btn" onClick={handleEditCancel}>
+                    Cancel
                   </button>
-                </div>
-              </>
-            )}
-          </li>
-        ))}
+                </>
+              ) : (
+                <>
+                  <div>
+                    <div style={{ fontWeight: 'bold', fontSize: '1.08rem' }}>{data.name}</div>
+                    {data.ownerName && (
+                      <div style={{ fontSize: '0.92rem', color: '#888', marginTop: '2px' }}>
+                        by {data.ownerName}
+                      </div>
+                    )}
+                    {!data.ownerName && data.owner && (
+                      <div style={{ fontSize: '0.92rem', color: '#888', marginTop: '2px' }}>
+                        by {data.owner}
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <button className="items-list-btn improved-btn" onClick={() => handleEdit(docSnap.id, data.name)}>
+                      Edit
+                    </button>
+                    <button className="items-list-btn improved-btn" onClick={() => handleDelete(docSnap.id)}>
+                      Delete
+                    </button>
+                  </div>
+                </>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
