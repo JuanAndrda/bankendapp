@@ -18,7 +18,7 @@ function AddItem() {
     try {
       await addDoc(collection(db, "items"), {
         name,
-        owner: user.uid,
+        ownerName: user.displayName || user.email || "Unknown",
         createdAt: new Date()
       });
       setName("");
