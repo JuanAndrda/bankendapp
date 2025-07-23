@@ -56,32 +56,4 @@
   border-radius: 4px;
   font-size: 1rem;
   margin-right: 8px;
-}
-
-/* Improved wider container and buttons for better fit */
-.improved-list {
-  max-width: 800px;
-  min-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-.improved-li {
-  padding: 1.1rem 0.5rem;
-  align-items: flex-start;
-}
-
-.improved-btn {
-  min-width: 80px;
-  padding: 0.4rem 1.2rem;
-  font-size: 1rem;
-  margin-top: 2px;
-}
-
-@media (max-width: 700px) {
-  .improved-list {
-    max-width: 98vw;
-    min-width: 0;
-  }
 } 
