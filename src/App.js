@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LandingPage from './UnAuth/LandingPage';
+import RequireAuth from './Auth/RequireAuth';
+import ProductList from './User/ProductList';
+import AdminDashboard from './Auth/AdminDashboard';
+import RequireAdmin from './Auth/RequireAdmin';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/admin" element={
+          <RequireAdmin>
+            <AdminDashboard />
+          </RequireAdmin>
+        } />
+        {/* Add a protected route for ProductList if needed in the future */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
