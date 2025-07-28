@@ -23,18 +23,28 @@ const LandingPage = () => {
     <div className="landing-container">
       <nav className="navbar">
         <div className="navbar-logo">AiZone</div>
+<<<<<<< HEAD
         <ul className="navbar-menu">
+=======
+        <ul className="navbar-links">
+>>>>>>> d60aaf17035438d24a3bc9ea2220c72eff8b6192
           <li onClick={() => scrollToSection('home')}>Home</li>
           <li onClick={() => scrollToSection('specs')}>Specs</li>
           <li onClick={() => scrollToSection('features')}>Features</li>
           <li onClick={() => scrollToSection('reviews')}>Reviews</li>
           <li onClick={() => scrollToSection('pricing')}>Pricing</li>
         </ul>
+<<<<<<< HEAD
         <div className="navbar-actions">
           <button className="navbar-buy" onClick={() => scrollToSection('pricing')}>Buy Now</button>
           <button onClick={() => setShowSignIn(true)} className="sign-in-btn">Log in</button>
           <button onClick={() => setShowSignUp(true)} className="sign-in-btn">Sign Up</button>
         </div>
+=======
+        <button className="navbar-buy" onClick={() => scrollToSection('pricing')}>Buy Now</button>
+        <button onClick={() => setShowSignIn(true)} className="sign-in-btn">Log in</button>
+        <button onClick={() => setShowSignUp(true)} className="sign-in-btn">Sign Up</button>
+>>>>>>> d60aaf17035438d24a3bc9ea2220c72eff8b6192
       </nav>
       <HomeSection />
       <SpecsSection />
