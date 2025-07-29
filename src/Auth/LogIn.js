@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import app from '../firebase';
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-<<<<<<< HEAD
 import { createUserDocIfNotExists } from '../shared/createUserDoc';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-=======
->>>>>>> d60aaf17035438d24a3bc9ea2220c72eff8b6192
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import Modal from '../components/Modal';
@@ -24,7 +21,6 @@ function LogIn({ open, onClose }) {
     e.preventDefault();
     setError('');
     try {
-<<<<<<< HEAD
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       await createUserDocIfNotExists(userCredential.user);
       // Check user role and redirect
@@ -35,13 +31,8 @@ function LogIn({ open, onClose }) {
       if (role === 'admin') {
         navigate('/admin');
       } else {
-        navigate('/'); // User product page
+        navigate('/user'); // User product page
       }
-=======
-      await signInWithEmailAndPassword(auth, email, password);
-      onClose();
-      navigate('/welcome');
->>>>>>> d60aaf17035438d24a3bc9ea2220c72eff8b6192
     } catch (err) {
       setError(err.message);
     }
@@ -51,7 +42,6 @@ function LogIn({ open, onClose }) {
     setError('');
     const provider = new GoogleAuthProvider();
     try {
-<<<<<<< HEAD
       const userCredential = await signInWithPopup(auth, provider);
       await createUserDocIfNotExists(userCredential.user);
       // Check user role and redirect
@@ -62,13 +52,8 @@ function LogIn({ open, onClose }) {
       if (role === 'admin') {
         navigate('/admin');
       } else {
-        navigate('/'); // User product page
+        navigate('/user'); // User product page
       }
-=======
-      await signInWithPopup(auth, provider);
-      onClose();
-      navigate('/welcome');
->>>>>>> d60aaf17035438d24a3bc9ea2220c72eff8b6192
     } catch (err) {
       setError(err.message);
     }

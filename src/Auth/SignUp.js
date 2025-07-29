@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import app from '../firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-<<<<<<< HEAD
 import { createUserDocIfNotExists } from '../shared/createUserDoc';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import '../App.css';
 import Modal from '../components/Modal';
 import './SignUp.css';
 import { useNavigate } from 'react-router-dom';
-=======
-import '../App.css';
-import Modal from '../components/Modal';
-import './SignUp.css';
->>>>>>> d60aaf17035438d24a3bc9ea2220c72eff8b6192
 
 function SignUp({ open, onClose }) {
   const [email, setEmail] = useState('');
@@ -20,16 +14,12 @@ function SignUp({ open, onClose }) {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const auth = getAuth(app);
-<<<<<<< HEAD
   const navigate = useNavigate();
-=======
->>>>>>> d60aaf17035438d24a3bc9ea2220c72eff8b6192
 
   if (!open) return null;
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-<<<<<<< HEAD
     setSuccess('');
     setError('');
     try {
@@ -42,16 +32,9 @@ function SignUp({ open, onClose }) {
       if (role === 'admin') {
         navigate('/admin');
       } else {
-        navigate('/'); // User product page
+        navigate('/user'); // User product page
       }
       setSuccess('Account created!');
-=======
-    setError('');
-    setSuccess('');
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      setSuccess('Account created! You can now sign in.');
->>>>>>> d60aaf17035438d24a3bc9ea2220c72eff8b6192
       setEmail('');
       setPassword('');
     } catch (err) {

@@ -12,12 +12,16 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/user" element={
+          <RequireAuth>
+            <ProductList />
+          </RequireAuth>
+        } />
         <Route path="/admin" element={
           <RequireAdmin>
             <AdminDashboard />
           </RequireAdmin>
         } />
-        {/* Add a protected route for ProductList if needed in the future */}
       </Routes>
     </BrowserRouter>
   );
