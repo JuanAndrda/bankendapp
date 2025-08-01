@@ -56,7 +56,15 @@ const ProductList = () => {
             ) : (
               filteredProducts.map((product, idx) => (
                 <div className="user-product-card" key={product.id}>
-                  <div className={`user-product-image user-product-image-${(idx % 4) + 1}`}></div>
+                  <div className="user-product-image">
+                    {product.imageUrl ? (
+                      <img src={product.imageUrl} alt={product.name} className="user-product-img" />
+                    ) : (
+                      <div className={`user-product-placeholder user-product-image-${(idx % 4) + 1}`}>
+                        <span>No Image</span>
+                      </div>
+                    )}
+                  </div>
                   <div className="user-product-info">
                     <h3 className="user-product-name">{product.name}</h3>
                     <p className="user-product-description">{product.description}</p>
