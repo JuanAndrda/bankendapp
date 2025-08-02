@@ -1,8 +1,29 @@
-/* Landing Page Container */
+/* Landing Page Container - Futuristic Theme */
 .landing-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f7f7f7 0%, #e3fcec 100%);
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
   font-family: 'Arial', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.landing-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+  animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
 /* Navigation Bar Styles */
@@ -11,20 +32,29 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(25, 118, 210, 0.1);
-  box-shadow: 0 2px 12px rgba(25, 118, 210, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: none;
+  border-right: none;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
 .navbar-logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #1976d2;
-  text-shadow: none;
+  font-size: 2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+  letter-spacing: -0.01em;
 }
 
 .navbar-links {
@@ -36,18 +66,21 @@
 }
 
 .navbar-links li {
-  color: #1976d2;
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
   transition: all 0.3s ease;
   font-weight: 500;
+  border: 1px solid transparent;
 }
 
 .navbar-links li:hover {
-  background: rgba(25, 118, 210, 0.1);
+  background: rgba(0, 245, 255, 0.1);
+  color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 245, 255, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(25, 118, 210, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 245, 255, 0.2);
 }
 
 .navbar-actions {

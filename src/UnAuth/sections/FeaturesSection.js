@@ -1,9 +1,12 @@
 import React from 'react';
+import './FeaturesSection.css';
 
 const FeaturesSection = () => (
-  <section id="features" style={{ minHeight: '40vh', background: '#fff', padding: '48px 0', textAlign: 'center' }}>
-    <h2>Features</h2>
-    <p>Immersive experience, lightweight build, and intuitive controls.</p>
+  <section id="features" className="features-section">
+    <div className="features-content">
+      <h2 className="features-title">Features</h2>
+      <p className="features-description">Immersive experience, lightweight build, and intuitive controls.</p>
+    </div>
   </section>
 );
 
